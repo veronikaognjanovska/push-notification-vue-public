@@ -2,8 +2,10 @@
 ### Using Vue.js and Firebase
 
 ### Deployed app 
+#### first demo
 https://push-notification-vue.herokuapp.com/
-
+#### second demo (Download option)
+https://agile-depths-81422.herokuapp.com/
 
 ### Steps
 
@@ -24,4 +26,6 @@ https://push-notification-vue.herokuapp.com/
 •	npm install --save bootstrap
 •	npm install --save vue-notification
 •	npm install --save axios
+•	npm install --save fs
+•	npm install --save jquery lodash.uniqueid popper.js
 ```
