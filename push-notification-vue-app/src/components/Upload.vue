@@ -230,7 +230,7 @@ export default {
           xhr.responseType = 'blob';
           xhr.onload = () => {
             let blob = xhr.response;
-            this.downloadBlob(blob, 'myfile');
+            this.downloadBlob(blob, fileName);
             this.sendAxiosPostToNotify("File Downloaded Successfully!",fileName,"success");
           };
           xhr.open('GET', url);
