@@ -1,4 +1,4 @@
-# push-notification-vue-app
+# vue-push-notification
 
 ## Project setup
 ```

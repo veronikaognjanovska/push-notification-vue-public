@@ -1,4 +1,3 @@
-
 importScripts("https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.2.4/firebase-messaging.js");
 

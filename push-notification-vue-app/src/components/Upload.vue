@@ -43,6 +43,7 @@
           <thead>
           <th>Filename</th>
           <th></th>
+          <th></th>
           </thead>
           <tbody>
           <tr v-for="fileName in allFilesNames" :key="fileName">
@@ -51,6 +52,11 @@
               <button @click="onDeleteFile(fileName)"
                       class="btn btn-danger"
               >Delete</button>
+            </td>
+            <td>
+              <button @click="onDownloadFile(fileName)"
+                      class="btn btn-warning"
+              >Download</button>
             </td>
           </tr>
           </tbody>
@@ -213,7 +219,53 @@ export default {
       this.uploadValue=0;
       this.fileData=null;
       this.urlFileName=null;
+    },
+
+    onDownloadFile(fileName){
+      firebase.storage().ref(fileName).getDownloadURL()
+        .then((url)=>{
+          // File downloaded successfully
+          // This can be downloaded directly:
+          let xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.onload = () => {
+            let blob = xhr.response;
+            this.downloadBlob(blob, 'myfile');
+            this.sendAxiosPostToNotify("File Downloaded Successfully!",fileName,"success");
+          };
+          xhr.open('GET', url);
+          xhr.send();
+        }).catch((error) => {
+          // An error occurred!
+          console.log(error.message);
+          this.sendAxiosPostToNotify("Can Not Download File!",fileName,"error");
+      });
+
+    },
+    downloadBlob(blob, name = 'file.txt') {
+      // Convert your blob into a Blob URL (a special url that points to an object in the browser's memory)
+      const blobUrl = URL.createObjectURL(blob);
+      // Create a link element
+      const link = document.createElement("a");
+      // Set link's href to point to the Blob URL
+      link.href = blobUrl;
+      link.download = name;
+      // Append link to the body
+      document.body.appendChild(link);
+      // Dispatch click event on the link
+      // This is necessary as link.click() does not work on the latest firefox
+      link.dispatchEvent(
+          new MouseEvent('click', {
+            bubbles: true,
+            cancelable: true,
+            view: window
+          })
+      );
+      // Remove link from body
+      document.body.removeChild(link);
     }
+
+
   } // end methods
 
 }

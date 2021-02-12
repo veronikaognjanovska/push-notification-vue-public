@@ -8,7 +8,7 @@
         <a href="#" id="notification-close" @click="closed()" title="close">x</a>
       </div>
       <div class="row pl-2">
-        <div class="col-xs-4">
+        <div class="col-xs-3">
           <img v-bind:src="icon" class="rounded">
         </div>
         <div class="col-xs-8 my-space">

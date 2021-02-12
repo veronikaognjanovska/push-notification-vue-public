@@ -2,10 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import firebase from 'firebase';
-import 'firebase/messaging';
-
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'firebase/messaging';
 
 import Notifications from 'vue-notification';
 
@@ -22,7 +21,6 @@ firebase.initializeApp({
     messagingSenderId: "<SENDER_ID>",
     appId: "<APP_ID>",
 });
-
 
 navigator.serviceWorker.register('firebase-messaging-sw.js',
     {scope: "firebase-cloud-messaging-push-scope"})
@@ -43,5 +41,6 @@ Vue.use(Notifications);
 new Vue({
   render: h => h(App),
 }).$mount('#app');
+
 
 
